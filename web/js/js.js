@@ -15,20 +15,19 @@ let checkedList = new Array();
 window.onload = function(){
     setTot();
     setAvgGrade(); 
+
  /*************************Event Listener*************************/
     bt_addStudent.addEventListener("click",add_row);
     bt_deleteStudent.addEventListener("click",delete_rowHandler);
 
-    for(let i=0;i<chk_check.length;i++){
+    for(let i=0;i<chk_check.length;i++)
         chk_check[i].addEventListener("click",getChecked);
-    } 
 /*************************Event Listener*************************/
 }
 function setAvgGrade(){
-    if(totNum){
-     document.getElementById("avgGrade").innerHTML
-     = calAvg(td_grade);
-    }
+    if(totNum)
+     document.getElementById("avgGrade").innerHTML = calAvg(td_grade);
+    
 }
 
 
@@ -39,15 +38,13 @@ function setTot(){
 function calTot(element){
     if(!element)
         return 0;
-    else{
+    else
         return element.length;
-    }
 }
 
 function calAvg(element){
-    if(!element){
+    if(!element)
         return 0;
-    }
     else{
         let num = 0;
         let non = 0;
@@ -79,7 +76,6 @@ function calAvg(element){
         result = result.toFixed(2);
         return result;
     }
-
 }
 
 function getChecked(){
@@ -109,15 +105,14 @@ function add_row() {
     checkbox.type = "checkbox";
     
     cell1.appendChild(checkbox);
-    
     cell2.innerHTML = "10";
     cell3.innerHTML = "20170000";
     cell4.innerHTML = "23";
     cell5.innerHTML = "A";
     cell5.className += "grade";
+
     setTot();
     setAvgGrade();
-    
     checkbox.addEventListener("click",getChecked);
     
   }
@@ -139,7 +134,6 @@ function add_row() {
   }
 
   function delete_checkedRows(){
-    
     while(checkedList.length!=0)
         tbody_tbody1.deleteRow(checkedList.pop());
     setTot();
