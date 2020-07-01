@@ -1,31 +1,45 @@
-
 /************************global variables************************/
 let table1_content = document.getElementsByClassName("content");
 let td_grade = document.getElementsByClassName("grade");
 let bt_addStudent = document.getElementById("addStudentBt");
 let bt_deleteStudent = document.getElementById("deleteStudentBt");
+let chk_check = document.getElementsByClassName("chk");
+let totNum = calTot(table1_content);
+let tbody_tbody1 = document.getElementById('tbody1');
+
+let checkedList = new Array();
 /************************global variables************************/
 
 
 
-/*************************Event Listener*************************/
-bt_addStudent.addEventListener("click",add_row);
 
 
-/*************************Event Listener*************************/
 
 window.onload = function(){
-    let totNum = calTot(table1_content);
-    console.log(totNum);
+    setTot();
+    setAvgGrade(); 
+ /*************************Event Listener*************************/
+    bt_addStudent.addEventListener("click",add_row);
+    bt_deleteStudent.addEventListener("click",delete_rowHandler);
+
+    for(let i=0;i<chk_check.length;i++){
+        chk_check[i].addEventListener("click",getChecked);
+    } 
+/*************************Event Listener*************************/
+}
+function setAvgGrade(){
     if(totNum){
-       document.getElementById("numberOfStudent").innerHTML 
-       = totNum;
-       document.getElementById("avgGrade").innerHTML
-       = calAvg(td_grade);
+     document.getElementById("avgGrade").innerHTML
+     = calAvg(td_grade);
     }
-    else{
-        alert("저장된 정보가 없습니다!");
-    }   
+}
+
+
+function setTot(){
+    totNum = calTot(table1_content);
+    document.getElementById("numberOfStudent").innerHTML = totNum;
+    if(!totNum) 
+        alert('저장된 정보가 없습니다!');
 }
 function calTot(element){
     if(!element)
@@ -64,17 +78,28 @@ function calAvg(element){
                     break;
                 default : non++;
                     break;
-
             }
         }
-        return num/(element.length-non);
+        let result = num/(element.length-non).toFixed(2);
+        result = result.toFixed(2);
+        return result;
     }
 
 }
 
+function getChecked(){
+    let arr = new Array();
+    for(let i = 0;i<table1_content.length;i++){
+        if(chk_check[i].checked==true){
+            arr.push(i);
+        }
+    }
+    checkedList = arr;
+}
+
 function add_row() {
-    let tbody_tbody1 = document.getElementById('tbody1');
-    let row = tbody_tbody1.insertRow( tbody_tbody1.rows.length );
+    
+    let row = tbody_tbody1.insertRow( tbody_tbody1.rows.length);
     row.className += "content";
 
     let cell1 = row.insertCell(0);
@@ -85,19 +110,44 @@ function add_row() {
     let cell6 = row.insertCell(5);
     
     let checkbox = document.createElement("input");
+    checkbox.className += "chk";
     checkbox.type = "checkbox";
+    
     cell1.appendChild(checkbox);
+    
     cell2.innerHTML = "10";
     cell3.innerHTML = "20170000";
     cell4.innerHTML = "23";
-    cell5.innerHTML = "A+";
+    cell5.innerHTML = "A";
     cell5.className += "grade";
+    setTot();
+    setAvgGrade();
+    
+    checkbox.addEventListener("click",getChecked);
     
   }
 
+  function delete_rowHandler(){
+    if(checkedList.length)
+        delete_checkedrows();
+    else
+        delete_row();
+  }
   function delete_row() {
-    var my_tbody = document.getElementById('tbody1-tbody');
-    if (my_tbody.rows.length < 1) return;
-    // my_tbody.deleteRow(0); // 상단부터 삭제
-    my_tbody.deleteRow( my_tbody.rows.length-1 ); // 하단부터 삭제
+     
+    if (tbody_tbody1.rows.length < 1) return;
+    
+    tbody_tbody1.deleteRow( tbody_tbody1.rows.length-1);
+    setTot();
+    setAvgGrade();
+  }
+
+  function delete_checkedrows(){
+     
+    if (tbody_tbody1.rows.length < 1) return;
+
+    while(checkedList.length!=0)
+        tbody_tbody1.deleteRow(checkedList.pop());
+    setTot();
+    setAvgGrade();
   }
