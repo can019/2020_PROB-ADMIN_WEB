@@ -35,8 +35,6 @@ function setAvgGrade(){
 function setTot(){
     totNum = calTot(table1_content);
     document.getElementById("numberOfStudent").innerHTML = totNum;
-    if(!totNum) 
-        alert('저장된 정보가 없습니다!');
 }
 function calTot(element){
     if(!element)
@@ -140,7 +138,6 @@ function add_row() {
   }
 
   function delete_checkedRows(){
-     
     if (tbody_tbody1.rows.length < 1) return;
 
     while(checkedList.length!=0)
