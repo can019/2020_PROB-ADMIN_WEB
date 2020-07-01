@@ -12,7 +12,6 @@ let tbody_tbody1 = document.getElementById('tbody1');
 let checkedList = new Array();
 /************************global variables************************/
 
-
 window.onload = function(){
     setTot();
     setAvgGrade(); 
