@@ -1,4 +1,4 @@
-cd let bt_id = document.getElementById("Id1");
+let bt_id = document.getElementById("Id1");
 let bt_class = document.getElementsByClassName("class1");
 
 window.onclick = function(e){

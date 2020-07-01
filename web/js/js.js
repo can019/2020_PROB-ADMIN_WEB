@@ -1,4 +1,5 @@
 /************************global variables************************/
+//Dom element
 let table1_content = document.getElementsByClassName("content");
 let td_grade = document.getElementsByClassName("grade");
 let bt_addStudent = document.getElementById("addStudentBt");
@@ -7,6 +8,7 @@ let chk_check = document.getElementsByClassName("chk");
 let totNum = calTot(table1_content);
 let tbody_tbody1 = document.getElementById('tbody1');
 
+//common variable
 let checkedList = new Array();
 /************************global variables************************/
 
