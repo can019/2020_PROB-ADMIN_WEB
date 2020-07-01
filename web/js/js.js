@@ -123,23 +123,23 @@ function add_row() {
   }
 
   function delete_rowHandler(){
+    if (tbody_tbody1.rows.length < 1){
+        alert("삭제할 내용이 없습니다!");
+        return;
+    } 
     if(checkedList.length)
         delete_checkedRows();
     else
         delete_row();
   }
-  function delete_row() {
-     
-    if (tbody_tbody1.rows.length < 1) return;
-    
+  function delete_row() { 
     tbody_tbody1.deleteRow( tbody_tbody1.rows.length-1);
     setTot();
     setAvgGrade();
   }
 
   function delete_checkedRows(){
-    if (tbody_tbody1.rows.length < 1) return;
-
+    
     while(checkedList.length!=0)
         tbody_tbody1.deleteRow(checkedList.pop());
     setTot();
