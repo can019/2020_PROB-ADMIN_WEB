@@ -1,5 +1,18 @@
+
+/************************global variables************************/
 let table1_content = document.getElementsByClassName("content");
 let td_grade = document.getElementsByClassName("grade");
+let bt_addStudent = document.getElementById("addStudentBt");
+let bt_deleteStudent = document.getElementById("deleteStudentBt");
+/************************global variables************************/
+
+
+
+/*************************Event Listener*************************/
+bt_addStudent.addEventListener("click",add_row);
+
+
+/*************************Event Listener*************************/
 
 window.onload = function(){
     let totNum = calTot(table1_content);
@@ -60,16 +73,30 @@ function calAvg(element){
 }
 
 function add_row() {
-    var tbody_tbody1 = document.getElementById('tbody1');
-    var row = tbody_tbody1.insertRow( my_tbody.rows.length ); // 하단에 추가
-    var cell1 = row.insertCell(0);
-    var cell2 = row.insertCell(1);
-    cell1.innerHTML = '항목';
-    cell2.innerHTML = new Date().toUTCString();
+    let tbody_tbody1 = document.getElementById('tbody1');
+    let row = tbody_tbody1.insertRow( tbody_tbody1.rows.length );
+    row.className += "content";
+
+    let cell1 = row.insertCell(0);
+    let cell2 = row.insertCell(1);
+    let cell3 = row.insertCell(2);
+    let cell4 = row.insertCell(3);
+    let cell5 = row.insertCell(4);
+    let cell6 = row.insertCell(5);
+    
+    let checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    cell1.appendChild(checkbox);
+    cell2.innerHTML = "10";
+    cell3.innerHTML = "20170000";
+    cell4.innerHTML = "23";
+    cell5.innerHTML = "A+";
+    cell5.className += "grade";
+    
   }
 
   function delete_row() {
-    var my_tbody = document.getElementById('my-tbody');
+    var my_tbody = document.getElementById('tbody1-tbody');
     if (my_tbody.rows.length < 1) return;
     // my_tbody.deleteRow(0); // 상단부터 삭제
     my_tbody.deleteRow( my_tbody.rows.length-1 ); // 하단부터 삭제
