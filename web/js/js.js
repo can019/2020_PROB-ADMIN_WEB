@@ -11,10 +11,6 @@ let checkedList = new Array();
 /************************global variables************************/
 
 
-
-
-
-
 window.onload = function(){
     setTot();
     setAvgGrade(); 
