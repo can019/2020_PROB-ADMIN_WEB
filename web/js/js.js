@@ -127,7 +127,7 @@ function add_row() {
 
   function delete_rowHandler(){
     if(checkedList.length)
-        delete_checkedrows();
+        delete_checkedRows();
     else
         delete_row();
   }
@@ -140,7 +140,7 @@ function add_row() {
     setAvgGrade();
   }
 
-  function delete_checkedrows(){
+  function delete_checkedRows(){
      
     if (tbody_tbody1.rows.length < 1) return;
 
