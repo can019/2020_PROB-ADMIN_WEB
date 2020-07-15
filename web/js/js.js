@@ -47,7 +47,7 @@ window.onclick = function(event) {
             break;          
     }
     if(event.target == span){
-        changeCell.innerHTML = document.getElementById('changeinner').value;
+        changeCell.innerHTML = document.getElementById('changeinner').value.toUpperCase();
     }
     
 }
