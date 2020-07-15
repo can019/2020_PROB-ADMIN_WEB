@@ -23,7 +23,7 @@
                 </thead>
                 <tbody id="tbody1">
                 <?php
-                //php
+                /*동일 page에서 처리
                     $fp = fopen("./data/StudentInfo.txt","r") or die("파일을 열 수 없습니다！");
                     $data = [];
 
@@ -37,7 +37,9 @@
                             '</td><td class="number">',$data[$i][1],'</td><td class="age">',$data[$i][2],
                             '</td><td class = "grade">',$data[$i][3],'</td><td>',$data[$i][4],'</td>';      
                         }             
-                    }
+                    }*/
+                //ajax 처리
+                
                 ?>
                 </tbody>
             </table>
@@ -61,8 +63,9 @@
                         <input type="text" id="changeinner" />
                     </p>
                 </div>
-            </div>      
-         <script src="js/js.js"></script>
+            </div>
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>      
+        <script src="js/js.js"></script>
         </body>
         
     </html>

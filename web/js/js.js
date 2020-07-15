@@ -53,16 +53,7 @@ window.onclick = function(event) {
 }
 
 window.onload = function(){
-    setTot();
-    setAvgGrade(); 
- /*************************Event Listener*************************/
-    bt_addStudent.addEventListener("click",add_row);
-    bt_deleteStudent.addEventListener("click",delete_rowHandler);
-
-    for(let i=0;i<chk_check.length;i++){
-        chk_check[i].addEventListener("click",getChecked);
-    } 
-/*************************Event Listener*************************/
+    let a = loadTable();
 }
 function setAvgGrade(){
     if(totNum){
@@ -73,6 +64,7 @@ function setAvgGrade(){
 
 
 function setTot(){
+    console.log('b');
     totNum = calTot(table1_content);
     document.getElementById("numberOfStudent").innerHTML = totNum;
     if(!totNum) 
@@ -188,3 +180,45 @@ function add_row() {
     setTot();
     setAvgGrade();
   }
+
+  function loadTable(){
+      console.log("!");
+	var httpRequest = new XMLHttpRequest();
+	 if(!httpRequest){
+		 alert("알 수 없는 오류 발생(XMLHttpRequest generate fail)");
+		 return false;
+	 }
+	 else{
+		 httpRequest.onreadystatechange = alertContents;
+		 httpRequest.open('POST',"table.php");//request table
+         httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+         httpRequest.send();
+
+        
+     }
+     
+	 function alertContents() {
+		try {
+			if (httpRequest.readyState === XMLHttpRequest.DONE) {
+				if (httpRequest.status === 200){
+                    tbody_tbody1.innerHTML = httpRequest.responseText;	
+
+                setTot();
+                setAvgGrade(); 
+            /*************************Event Listener*************************/
+            bt_addStudent.addEventListener("click",add_row);
+            bt_deleteStudent.addEventListener("click",delete_rowHandler);
+
+            for(let i=0;i<chk_check.length;i++){
+                chk_check[i].addEventListener("click",getChecked);
+            } 
+/*************************Event Listener*************************/
+                }
+			}
+		}
+		catch( e ) {
+			alert('Caught Exception: ' + e.description);
+			}
+        }
+        return true;
+}
