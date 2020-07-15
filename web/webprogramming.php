@@ -1,6 +1,4 @@
-<?php
-    echo 
-    '<!DOCTYPE html>
+<!DOCTYPE html>
     <html lang = "ko">
         <head>
             <title>웹 프로그래밍 1주차</title>
@@ -24,25 +22,23 @@
                     </tr>
                 </thead>
                 <tbody id="tbody1">
-                    <tr class ="content">
-                        <td><input class = "chk" type="checkbox"></td><td class="stdname">11</td><td class="number">20170000</td><td class="age">23</td><td class = "grade">A+</td><td></td>
-                    </tr>
-                    <tr class ="content">
-                        <td><input class = "chk" type="checkbox"></td><td class="stdname">22</td><td class="number">20170000</td><td class="age">23</td><td class = "grade">A+</td><td></td>
-                    </tr>
-                    <tr class ="content">
-                        <td><input class = "chk" type="checkbox"></td><td class="stdname">33</td><td class="number">20170000</td><td class="age">23</td><td class = "grade">A+</td><td></td>
-                    </tr>
-                    <tr class ="content">
-                        <td><input class = "chk" type="checkbox"></td><td class="stdname">44</td><td class="number">20170000</td><td class="age">23</td><td class = "grade">A+</td><td></td>
-                    </tr>
-                    <tr class ="content">
-                        <td><input class = "chk" type="checkbox"></td><td class="stdname">55</td><td class="number"> 20170000</td><td class="age">23</td><td class = "grade">A+</td><td></td>
-                    </tr>
+                <?php
+                //php
+                    $fp = fopen("./data/StudentInfo.txt","r") or die("파일을 열 수 없습니다！");
+                    $data = [];
+
+                    for($i=0;!trim(feof($fp));$i++){
+                        $temp = trim(fgets($fp));
+                        $data[$i] = explode('|',trim($temp));
+                        echo'<tr class ="content">
+                        <td><input class = "chk" type="checkbox"></td><td class="stdname">',$data[$i][0],
+                        '</td><td class="number">',$data[$i][1],'</td><td class="age">',$data[$i][2],'</td><td class = "grade">',$data[$i][3],
+                        '</td><td>',$data[$i][4],'</td>';                   
+                    }
+                ?>
                 </tbody>
             </table>
             <br />
-    
             
             <input id = "addStudentBt" type="button" value="학생 추가"/>
             <input id="deleteStudentBt" type="button" value="학생 삭제"/>
@@ -66,6 +62,5 @@
          <script src="js/js.js"></script>
         </body>
         
-    </html>';
+    </html>
 
-?>
