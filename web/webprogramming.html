@@ -1,10 +1,8 @@
-<!DOCTYPE html>
 <html>
-    <head lang="ko">
-        <meta charset="utf-8">
+    <head>
         <title>웹 프로그래밍 1주차</title>
         <link rel="stylesheet" href="css.css"></link>
-
+        <meta charset="utf-8" />
     </head>
 
     <body>
@@ -23,23 +21,22 @@
             <tr id="head">
                 <th>선택</th><th class="name">이름</th><th class="num">학번</th><th class="age">나이</th><th class="grade">학점</th><th class="ex">비고</th>
             </tr>
-            
         </thead>
         <tbody id="tbody1">
             <tr class ="content">
-                <td><input class = "chk" type="checkbox"></td><td>11</td><td>20170000</td><td>23</td><td class = "grade">A+</td><td></td>
+                <td><input class = "chk" type="checkbox"></td><td class="stdname">11</td><td class="number">20170000</td><td class="age">23</td><td class = "grade">A+</td><td></td>
             </tr>
             <tr class ="content">
-                <td><input class = "chk" type="checkbox"></td><td>22</td><td>20170000</td><td>23</td><td class = "grade">A+</td><td></td>
+                <td><input class = "chk" type="checkbox"></td><td class="stdname">22</td><td class="number">20170000</td><td class="age">23</td><td class = "grade">A+</td><td></td>
             </tr>
             <tr class ="content">
-                <td><input class = "chk" type="checkbox"></td><td>33</td><td>20170000</td><td>23</td><td class = "grade">A+</td><td></td>
+                <td><input class = "chk" type="checkbox"></td><td class="stdname">33</td><td class="number">20170000</td><td class="age">23</td><td class = "grade">A+</td><td></td>
             </tr>
             <tr class ="content">
-                <td><input class = "chk" type="checkbox"></td><td>44</td><td>20170000</td><td>23</td><td class = "grade">A+</td><td></td>
+                <td><input class = "chk" type="checkbox"></td><td class="stdname">44</td><td class="number">20170000</td><td class="age">23</td><td class = "grade">A+</td><td></td>
             </tr>
             <tr class ="content">
-                <td><input class = "chk" type="checkbox"></td><td>55</td><td>20170000</td><td>23</td><td class = "grade">A+</td><td></td>
+                <td><input class = "chk" type="checkbox"></td><td class="stdname">55</td><td class="number"> 20170000</td><td class="age">23</td><td class = "grade">A+</td><td></td>
             </tr>
         </tbody>
         </table>
@@ -54,8 +51,19 @@
             총 인원 : <span id = "numberOfStudent"></span><br><br>
         </p>
 
-
         
+        <div id="myModal" class="modal">
+ 
+            <!-- Modal content -->
+            <div class="modal-content">
+              <span class="close">&times;</span>                                                               
+              <p><span id="cellName"></span> <br /> <br />
+                 <input type="text" id="changeinner" />
+              </p>
+            </div>
+       
+          </div>
+      
     </body>
     <script src="js/js.js"></script>
 
