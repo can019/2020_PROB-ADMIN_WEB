@@ -1,5 +1,4 @@
 /************************global variables************************/
-//Dom element
 let table1_content = document.getElementsByClassName("content");
 let td_grade = document.getElementsByClassName("grade");
 let bt_addStudent = document.getElementById("addStudentBt");
@@ -7,44 +6,90 @@ let bt_deleteStudent = document.getElementById("deleteStudentBt");
 let chk_check = document.getElementsByClassName("chk");
 let totNum = calTot(table1_content);
 let tbody_tbody1 = document.getElementById('tbody1');
-
-//common variable
+let changeCell;
 let checkedList = new Array();
 /************************global variables************************/
+
+var modal = document.getElementById('myModal');
+var span = document.getElementsByClassName("close")[0];                                          
+span.onclick = function() {
+    modal.style.display = "none";
+}
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+
+    switch(event.target.className){
+        case 'stdname':
+            modal.style.display = "block";
+            document.getElementById('cellName').innerHTML = "이름을 변경하세요!";
+            changeCell = event.target;
+            document.getElementById("changeinner").value = event.target.innerHTML;
+            break;    
+        case 'number':
+            modal.style.display = "block";
+            document.getElementById('cellName').innerHTML = "학번을 변경하세요!";
+            changeCell = event.target;
+            document.getElementById("changeinner").value = event.target.innerHTML;
+            break;    
+        case 'age':
+            modal.style.display = "block";
+            document.getElementById('cellName').innerHTML = "나이를 변경하세요!";
+            changeCell = event.target;
+            document.getElementById("changeinner").value = event.target.innerHTML;
+            break;    
+        case 'grade':
+            modal.style.display = "block";
+            document.getElementById('cellName').innerHTML = "학점을 변경하세요!";
+            changeCell = event.target;
+            document.getElementById("changeinner").value = event.target.innerHTML;
+            break;          
+    }
+    if(event.target == span){
+        changeCell.innerHTML = document.getElementById('changeinner').value;
+    }
+    
+}
 
 window.onload = function(){
     setTot();
     setAvgGrade(); 
-
  /*************************Event Listener*************************/
     bt_addStudent.addEventListener("click",add_row);
     bt_deleteStudent.addEventListener("click",delete_rowHandler);
 
-    for(let i=0;i<chk_check.length;i++)
+    for(let i=0;i<chk_check.length;i++){
         chk_check[i].addEventListener("click",getChecked);
+    } 
 /*************************Event Listener*************************/
 }
 function setAvgGrade(){
-    if(totNum)
-     document.getElementById("avgGrade").innerHTML = calAvg(td_grade);
-    
+    if(totNum){
+     document.getElementById("avgGrade").innerHTML
+     = calAvg(td_grade);
+    }
 }
 
 
 function setTot(){
     totNum = calTot(table1_content);
     document.getElementById("numberOfStudent").innerHTML = totNum;
+    if(!totNum) 
+        alert('저장된 정보가 없습니다!');
 }
 function calTot(element){
     if(!element)
         return 0;
-    else
+    else{
         return element.length;
+    }
 }
 
 function calAvg(element){
-    if(!element)
+    if(!element){
         return 0;
+    }
     else{
         let num = 0;
         let non = 0;
@@ -76,6 +121,7 @@ function calAvg(element){
         result = result.toFixed(2);
         return result;
     }
+
 }
 
 function getChecked(){
@@ -105,35 +151,38 @@ function add_row() {
     checkbox.type = "checkbox";
     
     cell1.appendChild(checkbox);
+    
     cell2.innerHTML = "10";
     cell3.innerHTML = "20170000";
     cell4.innerHTML = "23";
     cell5.innerHTML = "A";
     cell5.className += "grade";
-
     setTot();
     setAvgGrade();
+    
     checkbox.addEventListener("click",getChecked);
     
   }
 
   function delete_rowHandler(){
-    if (tbody_tbody1.rows.length < 1){
-        alert("삭제할 내용이 없습니다!");
-        return;
-    } 
     if(checkedList.length)
-        delete_checkedRows();
+        delete_checkedrows();
     else
         delete_row();
   }
-  function delete_row() { 
+  function delete_row() {
+     
+    if (tbody_tbody1.rows.length < 1) return;
+    
     tbody_tbody1.deleteRow( tbody_tbody1.rows.length-1);
     setTot();
     setAvgGrade();
   }
 
-  function delete_checkedRows(){
+  function delete_checkedrows(){
+     
+    if (tbody_tbody1.rows.length < 1) return;
+
     while(checkedList.length!=0)
         tbody_tbody1.deleteRow(checkedList.pop());
     setTot();
