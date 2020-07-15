@@ -4,6 +4,6 @@
 <hr/>
 
 >#### 2020.07.15
->##### >HTML5 Validate passed
->##### >webProgramming.html => webProgramming.php
+> >##### <li> HTML5 Validate passed
+> >##### <li> webProgramming.html => webProgramming.php
 
