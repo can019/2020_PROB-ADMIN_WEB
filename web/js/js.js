@@ -11,13 +11,16 @@ let checkedList = new Array();
 /************************global variables************************/
 
 var modal = document.getElementById('myModal');
-var span = document.getElementsByClassName("close")[0];                                          
+var span = document.getElementsByClassName("close")[0];
+let bt_confrim = document.getElementById("confirm");                                          
 span.onclick = function() {
     modal.style.display = "none";
 }
 window.onclick = function(event) {
-    if (event.target == modal) {
+    if (event.target==span||event.target==modal) {
         modal.style.display = "none";
+        console.log(event.target);
+        
     }
 
     switch(event.target.className){
@@ -46,14 +49,19 @@ window.onclick = function(event) {
             document.getElementById("changeinner").value = event.target.innerHTML;
             break;          
     }
-    if(event.target == span){
-        changeCell.innerHTML = document.getElementById('changeinner').value.toUpperCase();
+    if(event.target == bt_confrim){
+        let data = makeData(document.getElementById('changeinner').value);
+        console.log(changeCell);
+        console.log(data);
+        loadTable(data);
+
+        modal.style.display = "none"; 
     }
     
 }
 
 window.onload = function(){
-    let a = loadTable();
+   loadTable();
 }
 function setAvgGrade(){
     if(totNum){
@@ -115,6 +123,16 @@ function calAvg(element){
     }
 
 }
+function eventBinding(){
+    /*************************Event Listener*************************/
+    bt_addStudent.addEventListener("click",add_row);
+    bt_deleteStudent.addEventListener("click",delete_rowHandler);
+
+    for(let i=0;i<chk_check.length;i++){
+        chk_check[i].addEventListener("click",getChecked);
+    } 
+    /*************************Event Listener*************************/
+}
 
 function getChecked(){
     let arr = new Array();
@@ -125,9 +143,13 @@ function getChecked(){
     }
     checkedList = arr;
 }
+function makeData(data){
+    return data;
+}
 
 function add_row() {
     
+    /*legacy code :: Add Row By Js.
     let row = tbody_tbody1.insertRow( tbody_tbody1.rows.length);
     row.className += "content";
 
@@ -152,8 +174,12 @@ function add_row() {
     setTot();
     setAvgGrade();
     
-    checkbox.addEventListener("click",getChecked);
+    checkbox.addEventListener("click",getChecked);*/
     
+
+    /*Add Row By Ajax*/
+
+
   }
 
   function delete_rowHandler(){
@@ -181,8 +207,8 @@ function add_row() {
     setAvgGrade();
   }
 
-  function loadTable(){
-      console.log("!");
+  function loadTable(data){
+      console.log(data);
 	var httpRequest = new XMLHttpRequest();
 	 if(!httpRequest){
 		 alert("알 수 없는 오류 발생(XMLHttpRequest generate fail)");
@@ -190,11 +216,9 @@ function add_row() {
 	 }
 	 else{
 		 httpRequest.onreadystatechange = alertContents;
-		 httpRequest.open('POST',"table.php");//request table
+		 httpRequest.open('POST',"./table.php");//request table
          httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-         httpRequest.send();
-
-        
+         httpRequest.send('data=' + encodeURIComponent(data));
      }
      
 	 function alertContents() {
@@ -202,17 +226,9 @@ function add_row() {
 			if (httpRequest.readyState === XMLHttpRequest.DONE) {
 				if (httpRequest.status === 200){
                     tbody_tbody1.innerHTML = httpRequest.responseText;	
-
                 setTot();
                 setAvgGrade(); 
-            /*************************Event Listener*************************/
-            bt_addStudent.addEventListener("click",add_row);
-            bt_deleteStudent.addEventListener("click",delete_rowHandler);
-
-            for(let i=0;i<chk_check.length;i++){
-                chk_check[i].addEventListener("click",getChecked);
-            } 
-/*************************Event Listener*************************/
+                eventBinding();
                 }
 			}
 		}
