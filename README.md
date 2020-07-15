@@ -3,11 +3,11 @@
 #### 2020.06.27~
 <hr/>
 
->## 2020.07.15
-> >##### <li> HTML5 Validate passed
+>## **2020.07.15**
+> >#### <li> HTML5 Validate passed
 > > > <img src = "https://user-images.githubusercontent.com/26926966/87548043-ec73a100-c6e6-11ea-9ada-1a8acc19ead3.png" >
-> >##### <li> webProgramming.html => webProgramming.php
+> >#### <li> webProgramming.html => webProgramming.php
 > > > ✓ ~~webProgramming.php에서 php를 통하여 Table를 불러옴.~~  
 > > > ✓
->## 2020.07.16
+>## **2020.07.16**
 > >##### <li> A
