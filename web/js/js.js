@@ -50,14 +50,25 @@ window.onclick = function(event) {
             break;          
     }
     if(event.target == bt_confrim){
-        let data = makeData(document.getElementById('changeinner').value);
-        console.log(changeCell);
-        console.log(data);
+        changeCell.innerHTML = document.getElementById('changeinner').value;
+        let data = makeData(changeCell.parentNode);
         loadTable(data);
 
         modal.style.display = "none"; 
     }
     
+}
+function makeData(element){
+    let rownum = element.rowIndex-1;
+    let name = element.firstElementChild.nextSibling;
+    let studentId = name.nextSibling;
+    let age = studentId.nextSibling;
+    let grade = age.nextSibling;
+    let extra = grade.nextSibling;
+
+    let data = rownum+'|'+name.innerHTML+'|'+studentId.innerHTML+'|'+
+    age.innerHTML+'|'+grade.innerHTML+'|'+extra.innerHTML;
+    return data;
 }
 
 window.onload = function(){
@@ -72,7 +83,7 @@ function setAvgGrade(){
 
 
 function setTot(){
-    console.log('b');
+    
     totNum = calTot(table1_content);
     document.getElementById("numberOfStudent").innerHTML = totNum;
     if(!totNum) 
@@ -143,13 +154,10 @@ function getChecked(){
     }
     checkedList = arr;
 }
-function makeData(data){
-    return data;
-}
 
 function add_row() {
     
-    /*legacy code :: Add Row By Js.
+    //legacy code :: Add Row By Js.
     let row = tbody_tbody1.insertRow( tbody_tbody1.rows.length);
     row.className += "content";
 
@@ -174,10 +182,10 @@ function add_row() {
     setTot();
     setAvgGrade();
     
-    checkbox.addEventListener("click",getChecked);*/
+    checkbox.addEventListener("click",getChecked);
     
-
     /*Add Row By Ajax*/
+    //Todo :: ajax로 row 추가. 
 
 
   }
@@ -208,7 +216,6 @@ function add_row() {
   }
 
   function loadTable(data){
-      console.log(data);
 	var httpRequest = new XMLHttpRequest();
 	 if(!httpRequest){
 		 alert("알 수 없는 오류 발생(XMLHttpRequest generate fail)");

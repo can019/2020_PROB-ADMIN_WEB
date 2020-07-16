@@ -48,7 +48,7 @@
             </div>
 
            
-        <script src="js/js.js"></script>
+        <script src="js/js.js?version=20200716_1"></script>
         </body>
         
     </html>
