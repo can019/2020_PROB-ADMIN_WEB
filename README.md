@@ -1,6 +1,7 @@
 # 2020_PROB/Admin_WEB
-#### Contributor :: whdgusdl48, can019
-#### Term :: 2020.06.27~
+
+* #### Contributor :: whdgusdl48, can019
+* #### Term :: 2020.06.27~
 <hr/>
 
 ## **2020.07.15**
