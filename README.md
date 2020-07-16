@@ -12,4 +12,13 @@
 > > > ✓ table.php(new) :: txt 파일을 read -> 동적으로 html코드 생성. request data에 따라 txt파일 write.<br>   
 > > > ✓ ~~addStudent.php(new) :: request data에 따라 txt write.~~
 >## **2020.07.16**
-> >##### <li> A
+> >#### <li> **js.js 수정**
+> > > ✓ modal 박스를 통한 변경 -> ajax로 서버에 변경사항 즉시 넘김.
+> > > > ajax를 위한 data 가공
+> > > > > Form :: Post<br/>
+> > > > > Content-type :: application/x-www-form-urlencoded
+> >#### <li> **table.php 수정**
+> > > ✓ data.txt가 존재하지 않는 예외 처리 변경
+> > > >  fopen() or die() ->  !file_exist() die()
+> > > ✓ js에서 넘어온 data parsing -> data.txt modify.
+> > > > post로 넘어온 data가 없을 시엔 수행 x
