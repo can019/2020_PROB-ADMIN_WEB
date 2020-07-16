@@ -1,9 +1,9 @@
 <?php
-
     if(isset($_POST['data'])){
         $request = $_POST['data'];
         if($request!='undefined'){
-            $fp = fopen("./data/StudentInfo.txt","r") or die("파일을 열 수 없습니다！");
+            if(!file_exists("./data/StudentInfo.txt")) die();
+            $fp = fopen("./data/StudentInfo.txt","r");
             $explodedData = [];
             $explodedData = explode('|',$request);
             $newData ='';
@@ -25,7 +25,9 @@
             fclose($rfp);
         } 
       }
-    $fp = fopen("./data/StudentInfo.txt","r") or die("파일을 열 수 없습니다！");    
+    if(!file_exists("./data/StudentInfo.txt")) die();
+    $fp = fopen("./data/StudentInfo.txt","r");
+
     $data = [];
     for($i=0;!trim(feof($fp));$i++){
         $temp = trim(fgets($fp));
