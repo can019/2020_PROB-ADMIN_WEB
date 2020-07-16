@@ -8,7 +8,7 @@
 <img src = "https://user-images.githubusercontent.com/26926966/87548043-ec73a100-c6e6-11ea-9ada-1a8acc19ead3.png" >
   
 ### <li> **webProgramming.html => webProgramming.php**
-✓ ~~webProgramming.php에서 php를 통하여 Table를 불러옴.~~ 외부 php파일을 ajax로 받아 삽입  
+&nbsp;&nbsp;&nbsp;✓ ~~webProgramming.php에서 php를 통하여 Table를 불러옴.~~ 외부 php파일을 ajax로 받아 삽입  
 ### <li> **php파일**
 ✓ table.php(new) :: txt 파일을 read -> 동적으로 html코드 생성. request data에 따라 txt파일 write.<br>   
 ✓ ~~addStudent.php(new) :: request data에 따라 txt write.~~
