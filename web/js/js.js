@@ -10,6 +10,11 @@ let changeCell;
 let checkedList = new Array();
 /************************global variables************************/
 
+/*******************************pattern**************************/
+var specailizer = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/gi;//특수문자
+
+/*******************************pattern**************************/
+
 var modal = document.getElementById('myModal');
 var span = document.getElementsByClassName("close")[0];
 let bt_confrim = document.getElementById("confirm");                                          
@@ -50,10 +55,15 @@ window.onclick = function(event) {
             break;          
     }
     if(event.target == bt_confrim){
-        changeCell.innerHTML = document.getElementById('changeinner').value;
-        let data = makeData(changeCell.parentNode);
-        loadTable(data);
-
+        let txt = document.getElementById('changeinner').value;
+        if(specailizer.test(txt)){
+            alert('특수문자를 제거하세요');
+        }
+        else{
+            changeCell.innerHTML = document.getElementById('changeinner').value;
+            let data = makeData(changeCell.parentNode);
+            loadTable(data);
+        }
         modal.style.display = "none"; 
     }
     
