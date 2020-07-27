@@ -27,7 +27,7 @@
     - fopen() or die() ->  !file_exist() die()
   + **js에서 넘어온 data parsing -> data.txt modify.**
     - post로 넘어온 data가 없을 시엔 수행 x
-* ### **xxs해결**
+* ### **xss해결**
   + **/js/js.js, table.php 방어 코드 작성**
  
 <hr/>
